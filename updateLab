@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# Noviembre 13 - 02:38 - GH
+# Noviembre 13 - 02:32 GH
 #################################
 
 
@@ -201,10 +201,10 @@ if [ "$QuienPompo" != "root" ]
                           cd /home/pi
                           ls -lt .updateLab_*
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo UpdateLab  \e[0m  "
-                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/updateLab; mv -f /tmp/updateLab /home/pi/.updateLab.sh; chmod +x /home/pi/.updateLab.sh
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/updateLab; mv -f /tmp/updateLab /home/pi/.updateLab.sh; chmod +x /home/pi/.updateLab.sh;
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${BYellow} Archivo Actualizado  \e[0m  "
                           rm -rf /tmp/updateLab;
-                          chown pi:pi /home/pi/.updateLab.sh
+                          chown pi:pi /home/pi/.updateLab.sh;
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
 
 
