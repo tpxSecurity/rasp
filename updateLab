@@ -1,0 +1,225 @@
+#!/bin/bash
+
+##################################
+# Actualización del sistema Rasp
+# tpx Security
+#     https://lab.tpx.mx/rasp
+# 13 Noviembre 2018
+#################################
+
+
+#  Colors
+Black='\e[0;30m'        # Black
+Red='\e[0;31m'          # Red
+Green='\e[0;32m'        # Green
+Yellow='\e[0;33m'       # Yellow
+Blue='\e[0;34m'         # Blue
+Purple='\e[0;35m'       # Purple
+Cyan='\e[0;36m'         # Cyan
+White='\e[0;37m'        # White
+
+# Bold
+BBlack='\e[1;30m'       # Black
+BRed='\e[1;31m'         # Red
+BGreen='\e[1;32m'       # Green
+BYellow='\e[1;33m'      # Yellow
+BBlue='\e[1;34m'        # Blue
+BPurple='\e[1;35m'      # Purple
+BCyan='\e[1;36m'        # Cyan
+BWhite='\e[1;37m'       # White
+
+# Default
+DefaultColor='\e[0m'   # Default foreground color
+
+
+clear;
+
+echo ""
+function cargandopath()
+   {
+echo -ne '\n'
+echo -ne ' | tpx0000x0x0x0as98                                      (5%)\r'
+sleep .3
+echo -ne ' / tpx0x909x09asd000000d0w1                               (10%)\r'
+sleep .3
+echo -ne ' - tpx0x09x09asd0wn8asd8as8d00010                         (15%)\r'
+sleep .5
+echo -ne ' \ tpx0a500a989asd0dnloadera7sd0104010                    (25%)\r'
+sleep .3
+echo -ne ' | tpx0a50x0asida0sd9as00x0as0asdjx0as01337x0kx           (45%)\r'
+sleep .3
+echo -ne ' / tpx0x50asd89a7as90d81200x0x90912a0104010               (55%)\r'
+sleep .2
+echo -ne ' - tpx10x0sa9dax0129sd090x0x09ad90asd0a89s09zx0asd        (78%)\r'
+sleep .3
+echo -ne ' !!   UpdateLab is ready !!                              (100%) \r'
+sleep 1
+
+   }
+
+cargandopath
+
+clear;
+
+echo ""
+echo  -e "\e[31m              \033[33;5;7m Actualizacion para el Laboratorio \033[0m"
+echo  -e "\e[31m      ████████╗██████╗ ██╗  ██╗     ██╗      █████╗ ██████╗"
+echo  -e "\e[31m      ╚══██╔══╝██╔══██╗╚██╗██╔╝     ██║     ██╔══██╗██╔══██╗"
+echo  -e "\e[31m         ██║   █▓████╔╝ ╚███╔╝█████╗██║     ███████║██████╔╝"
+echo  -e "\e[31m         █▓║   ██╔═══╝  ██╔██╗╚════╝██║     ██╔══██║██╔══██╗"
+echo  -e "\e[31m         ██║   █▓║     ██╔╝ █▓╗     ███▓▒░░╗█▓║  ▓▒║█▓▒▒░░╔╝"
+echo  -e "\e[31m         ╚═╝   ╚═╝     ╚═╝  ╚═╝     ╚═▓░▒▒▓╝▒█   ░░▒▓████═╝"
+echo  -e "\033[0m      https://lab.tpx.mx/rasp         \e[31m▒▒▒   ░░   ▒▒ ░▒░▒  " 
+echo  -e "\033[0m                                        \e[31m░    ░   ░  ░  "
+echo -e "\e[0m"
+echo ""
+
+QuienPompo=`whoami`
+if [ "$QuienPompo" != "root" ]
+  then
+   echo ""
+    echo -e "    + - - - - - - - - - - - - - - - - - - - - - - - - - - -  + "
+    echo -e "    | [${BRed}!!${White}]${BWhite} Necesitas ser root para poder correr este comando |"
+    echo -e "     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+    echo -e "    \e[0m| ${BRed}     sudo updateLab    ${DefaultColor}                                |"
+    echo -e "     - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+    echo -e "\e[0m"
+    echo ""
+  else
+  sleep 1
+
+#Conexion a Internet
+    echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+
+        data="https://lab.tpx.mx/rasp/data.txt";
+        fecha=`date '+%Y-%m-%d %H:%M:%S'`
+
+        ntools=$(curl -a --silent $data | sed -n 's/tools: *//p')
+        nbashrc=$(curl -a --silent $data | sed -n 's/Bashrc: *//p')
+        nupdateLab=$(curl -a --silent $data | sed -n 's/updateLab: *//p')
+
+
+        if [ $ntools -gt 0 ]; then
+        echo -e "  $BRed [ $ntools]\e[0m Herramientas arriba "
+        else
+        echo -e "  ${BCyan}[ - ] \e[3m No hay tools para descargar \e[0m"
+        fi  
+        echo -e "  $BRed[ $nbashrc ]\e[0m necesitas actualiza tu BashRC "
+        echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualiza tu UpdateLab "
+
+        echo ""
+        echo -e "     ${Red} [${Cyan} 1 ${Red}]$White Actualizar Tools "
+        echo -e "     ${Red} [${Cyan} 2 ${Red}]$White Actualiar Bashrc. "
+        echo -e "     ${Red} [${Cyan} 3 ${Red}]$White Actualizar UpdateLab "
+        echo -e "     ${Red} [${Cyan} 4 ${Red}]$White Salir. "
+        echo ""
+        echo -e "    ${Red} [${BCyan} + ${Red}]$White Que opcion deseas: ${Cyan}";
+        read -e -p "       ╚═════════════ "  menu
+
+        echo -e "\e[0m"
+      
+
+              menu=`expr $menu + 0 2> /dev/null`
+              case $menu in
+                    "1")
+
+                      if [ $ntools -gt 0 ]; then
+                      echo -e "  ${Cyan}[${Red}+${Cyan}]\e[0m Se encontrarón $ntools Herramientas.  \e[0m  "
+                      echo -e "  ${Cyan}[${Yellow}!${Cyan}]\e[0m Estas seguro de continuar con la descarga? "
+                      read -e -p "      (s/n): " -i "s" bajar
+
+                        if [ "$bajar" = "s" ] || [ "$bajar" = "S" ]; then
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Descargando Herramientas  \e[0m  "
+                          sleep 2
+                          cd  /home/pi/Desktop/tools;
+                          wget https://lab.tpx.mx/rasp/tools.txt -O tool.sh -q
+                          source tools.sh
+                          echo -e "  ${Cyan}[${BGreen}!${Cyan}]\e[0m $fecha ${Cyan}Herramientas Descargadas  \e[0m  "
+                          rm -rf tools.sh
+                          ls -lt
+                          sleep 3
+
+                        fi
+                      else
+                      echo -e "  ${Cyan} \e[3m No hay tools para descargar en este momento  \e[0m"
+                      fi
+
+                    ;;
+                    "2")
+
+                      if [ $nbashrc == Si ]; then
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando bashRc  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Creando Copia  \e[0m  "
+                          cp /home/pi/.bashrc /home/pi/.bashrc_$(date +%Y%m%d)
+                          sleep 2
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
+                          ls .basrc_*
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/.bashrc; mv -f /tmp/.bashrc /home/pi/.bashrc
+                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
+                          echo -e " $BYellow c[ÏÏÏ] \e[0m"
+
+                      else
+                      echo -e "  ${BRed} [!] \e[3m No es necesario actualizar el archivo .bashrc \e[0m"
+                      fi
+
+
+
+                     ;;
+                    "3")
+                        
+                      if [ $nupdateLab == Si ]; then
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando nupdateLab  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Creando Copia  \e[0m  "
+                          cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%Y%m%d)
+                          sleep 2
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
+                          ls .updateLab_*
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/.updateLab; mv -f /tmp/.updateLab /home/pi/.updateLab
+                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
+                          echo -e " $BYellow c[ÏÏÏ] \e[0m"
+
+                      else
+                      echo -e "  ${BRed} [!] \e[3m No es necesario actualizar updateLab \e[0m"
+                      fi
+
+                        
+                     ;;
+                    "4")
+                                echo ""
+                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo ""
+                                exit
+                          exit
+                     ;;
+
+                    "0")
+                                echo ""
+                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo ""
+                                exit
+                          exit
+                     ;;
+                      *)
+                       echo ""
+                       echo -e "$White     [${BRed}!!${White}]$Red Opcion No valida."
+                       echo ""
+                       ;;
+              esac
+      else
+             echo -e "    + - - - - - - - - - - - - - - - - - - - - - - -  + "
+              echo -e "    | [${BRed}!!${White}]${BWhite} Necesitas estar conectado a Internet     |"
+              echo -e "     - - - - - - - - - - - - - - - -- - - - - - - - - "
+              echo -e "    | ${BRed}  No Hay conexión a Internet!! ${DefaultColor}               |"
+              echo -e "     - - - - - - - - - - - - - - - - - - - - - - - - "
+              echo -e "\e[0m"
+      fi
+
+
+echo -e " EOF !"
+echo -e "${BYellow} c[ÏÏÏ] \e[0m"
+
+
+fi
