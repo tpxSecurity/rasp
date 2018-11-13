@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# 13 Noviembre 2018 03:20 AM
+# 13 Noviembre 2018 GH - 03:22 AM
 #################################
 
 
@@ -165,11 +165,11 @@ if [ "$QuienPompo" != "root" ]
                           sleep 2
                           rutabkp=$(ls /home/pi/.bashrc_*)
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada\e[0m"
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} $rutabkp \e[0m"
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}->$rutabkp \e[0m"
                           sleep 2
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Descargando archivo .Bashrc  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
                           wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/bashrc; mv -f /tmp/bashrc /home/pi/.bashrc
-                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan}Archivo Actualizado  \e[0m  "
+                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
                           rm -rf /tmp/bashrc;
                           chown pi:pi /home/pi/.bashrc;
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} No es necesario actualizar nuevamente. \e[0m"
@@ -193,14 +193,14 @@ if [ "$QuienPompo" != "root" ]
                           cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%d_%m_%Y_%H:%M:%S)
                           sleep 2
                           rutaupdate=$(ls /home/pi/.updateLab_*)
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada en:  \e[0m  "
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} $rutaupdate \e[0m"
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Descargando archivo UpdateLab  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}->$rutaupdate \e[0m"
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo UpdateLab  \e[0m  "
                           wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/.updateLab; mv -f /tmp/.updateLab /home/pi/.updateLab.sh
-                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan}Archivo Actualizado  \e[0m  "
+                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
                           rm -rf /tmp/.updateLab;
-                          chown pi:pi /home/pi/.updateLab;
-                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} No es necesario actualizar nuevamente. \e[0m"
+                          chown pi:pi /home/pi/.updateLab.sh;
+                          echo -e " $BYellow c[ÏÏÏ] \e[0m"
 
 
                       else
