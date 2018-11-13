@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# 13 Noviembre 2018 GH - 03:26AM
+# 13 Noviembre 2018 GH - 03:17AM
 #################################
 
 
@@ -188,7 +188,7 @@ if [ "$QuienPompo" != "root" ]
                     "3")
                         
                       if [ $nupdateLab == Si ]; then
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando nupdateLab  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando updateLab  \e[0m  "
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Creando Copia  \e[0m  "
                           cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%d_%m_%Y_%H:%M:%S)
                           sleep 2
