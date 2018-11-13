@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# 13 Noviembre 2018
+# 13 Nov 2018
 #################################
 
 
@@ -103,7 +103,7 @@ if [ "$QuienPompo" != "root" ]
         if [ $ntools -gt 0 ]; then
         echo -e "  $BRed [ $ntools]\e[0m Herramientas arriba "
         else
-        echo -e "  ${BCyan}[ - ] \e[3m No hay tools para descargar \e[0m"
+        echo -e "  ${BCyan}[ No ] \e[3m hay tools para descargar \e[0m"
         fi  
         echo -e "  $BRed[ $nbashrc ]\e[0m necesitas actualiza tu BashRC "
         echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualiza tu UpdateLab "
@@ -137,6 +137,7 @@ if [ "$QuienPompo" != "root" ]
                           source tool.sh
                           sleep 2
                           echo -e "  ${Cyan}[${BGreen}!${Cyan}]\e[0m $fecha ${Cyan}Herramientas Descargadas  \e[0m  "
+                          chown -R pi:pi /home/pi/Desktop/tools;
                           cd /home/pi/Desktop/tools;
                           rm -rf tool.sh
                           ls -lt
@@ -158,9 +159,10 @@ if [ "$QuienPompo" != "root" ]
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
                           ls .basrc_*
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
-                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/.bashrc; mv -f /tmp/.bashrc /home/pi/.bashrc
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/bashrc; mv -f /tmp/bashrc /home/pi/.bashrc
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
-                          rm -rf /tmp/.bashrc
+                          rm -rf /tmp/bashrc;
+                          chown pi:pi /home/pi/.bashrc;
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
 
 
@@ -174,16 +176,17 @@ if [ "$QuienPompo" != "root" ]
                     "3")
                         
                       if [ $nupdateLab == Si ]; then
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando nupdateLab  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando updateLab  \e[0m  "
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Creando Copia  \e[0m  "
-                          cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%Y%m%d)
+                          cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%d_%m_%Y_%H:%M:%S);
                           sleep 2
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
-                          ls .updateLab_*
+                          ls -la /home/pi/.updateLab*
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo UpdateLab  \e[0m  "
-                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/.updateLab; mv -f /tmp/.updateLab /home/pi/.updateLab
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/updateLab; mv -f /tmp/updateLab /home/pi/.updateLab.sh; chmod +x /home/pi/.updateLab.sh
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
-                          rm -rf /tmp/.updateLab
+                          rm -rf /tmp/updateLab;
+                          chown pi:pi /home/pi/.updateLab.sh
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
 
 
@@ -195,7 +198,7 @@ if [ "$QuienPompo" != "root" ]
                      ;;
                     "4")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -203,7 +206,7 @@ if [ "$QuienPompo" != "root" ]
 
                     "0")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -225,8 +228,8 @@ if [ "$QuienPompo" != "root" ]
 
 echo ""
 echo ""
-echo -e " EOF !"
-echo -e "${BYellow} c[ÏÏÏ] \e[0m"
+echo -e " :q "
+echo -e "$White[${Green} EOF! ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
 echo ""
 
 
