@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# Noviembre 13 - 02:32 GH
+# 13 Noviembre 2018 GH
 #################################
 
 
@@ -100,32 +100,23 @@ if [ "$QuienPompo" != "root" ]
         nupdateLab=$(curl -a --silent $data | sed -n 's/updateLab: *//p')
         nLogin=$(curl -a --silent $data | sed -n 's/Login: *//p')
 
-
-
-
-
         if [ $nLogin == Si ]; then
-            wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/login_tpx -q -O /tmp/login_tpx; mv -f /tmp/login_tpx /home/pi/.login_tpx;
-            rm -rf /tmp/login_tpx;
-            chown pi:pi /home/pi/.login_tpx;
-            echo -ne ' Login              \r'
-            sleep .3
-            echo -ne ' Login Actualizado  \r'
-            sleep .3
-        else
-        echo -e "  ${BCyan}[ No ] \e[3m hay update en el login \e[0m"
-        fi
+          echo -e "  $BGreen[!]\e[0m Se ha actualizado el archivo Login "
+          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/login_tpx -q -O /tmp/login_tpx; mv -f /tmp/login_tpx /home/pi/.login_tpx;
+          else
+          echo -e "  ${BRed} [!] \e[3m No hay updates del archivo login_tpx \e[0m"
+          fi
         if [ $ntools -gt 0 ]; then
         echo -e "  $BRed [ $ntools]\e[0m Herramientas arriba "
         else
-        echo -e "  ${BCyan}[ No ] \e[3m hay tools para descargar \e[0m"
+        echo -e "  ${BCyan}[ - ] \e[3m No hay tools para descargar \e[0m"
         fi  
         echo -e "  $BRed[ $nbashrc ]\e[0m necesitas actualiza tu BashRC "
-        echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualizar tu UpdateLab "
+        echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualiza tu UpdateLab "
 
         echo ""
         echo -e "     ${Red} [${Cyan} 1 ${Red}]$White Actualizar Tools "
-        echo -e "     ${Red} [${Cyan} 2 ${Red}]$White Actualizar Bashrc. "
+        echo -e "     ${Red} [${Cyan} 2 ${Red}]$White Actualiar Bashrc. "
         echo -e "     ${Red} [${Cyan} 3 ${Red}]$White Actualizar UpdateLab "
         echo -e "     ${Red} [${Cyan} 4 ${Red}]$White Salir. "
         echo ""
@@ -145,14 +136,14 @@ if [ "$QuienPompo" != "root" ]
                       read -e -p "      (s/n): " -i "s" bajar
 
                         if [ "$bajar" = "s" ] || [ "$bajar" = "S" ]; then
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Descargando Herramientas  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando Herramientas  \e[0m  "
                           sleep 2
                           cd  /home/pi/Desktop/tools;
                           wget https://lab.tpx.mx/rasp/tools.txt -O tool.sh -q;
                           source tool.sh
                           sleep 2
                           echo -e "  ${Cyan}[${BGreen}!${Cyan}]\e[0m $fecha ${Cyan}Herramientas Descargadas  \e[0m  "
-                          chown -R pi:pi /home/pi/Desktop/tools;
+                         chown -R pi:pi /home/pi/Desktop/tools;
                           cd /home/pi/Desktop/tools;
                           rm -rf tool.sh
                           ls -lt
@@ -174,13 +165,11 @@ if [ "$QuienPompo" != "root" ]
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
                           ls .basrc_*
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
-                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/bashrc; mv -f /tmp/bashrc /home/pi/.bashrc
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/.bashrc; mv -f /tmp/.bashrc /home/pi/.bashrc
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
-                          rm -rf /tmp/bashrc;
-                          chown pi:pi /home/pi/.bashrc;
+                          rm -rf /tmp/.bashrc;
+                          chown pi:pi /home/pi/.bashrc
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
-                          lxterminal;
-                          exit 
 
 
                       else
@@ -193,18 +182,17 @@ if [ "$QuienPompo" != "root" ]
                     "3")
                         
                       if [ $nupdateLab == Si ]; then
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando updateLab  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Actualizando nupdateLab  \e[0m  "
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Creando Copia  \e[0m  "
-                          cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%d_%m_%Y_%H:%M:%S);
+                          cp /home/pi/.updateLab.sh /home/pi/.updateLab_$(date +%Y%m%d)
                           sleep 2
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
-                          cd /home/pi
-                          ls -lt .updateLab_*
+                          ls .updateLab_*
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo UpdateLab  \e[0m  "
-                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/updateLab; mv -f /tmp/updateLab /home/pi/.updateLab.sh; chmod +x /home/pi/.updateLab.sh;
-                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${BYellow} Archivo Actualizado  \e[0m  "
-                          rm -rf /tmp/updateLab;
-                          chown pi:pi /home/pi/.updateLab.sh;
+                          wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/.updateLab; mv -f /tmp/.updateLab /home/pi/.updateLab
+                          echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
+                          rm -rf /tmp/.updateLab;
+                          chown pi:pi /home/pi/.updateLab;
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
 
 
@@ -212,13 +200,11 @@ if [ "$QuienPompo" != "root" ]
                       echo -e "  ${BRed} [!] \e[3m No es necesario actualizar updateLab \e[0m"
                       fi
 
-
-
                         
                      ;;
                     "4")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -226,7 +212,7 @@ if [ "$QuienPompo" != "root" ]
 
                     "0")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -248,8 +234,8 @@ if [ "$QuienPompo" != "root" ]
 
 echo ""
 echo ""
-echo -e " :q "
-echo -e "$White[${Green} EOF! ${White}] \e[0m tpx  Security $BYellow c[ÏÏÏ] \e[0m"
+echo -e " EOF !"
+echo -e "${BYellow} c[ÏÏÏ] \e[0m"
 echo ""
 
 
