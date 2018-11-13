@@ -204,7 +204,7 @@ if [ "$QuienPompo" != "root" ]
                      ;;
                     "4")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}] tpx  Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -212,7 +212,7 @@ if [ "$QuienPompo" != "root" ]
 
                     "0")
                                 echo ""
-                                echo -e "$White[${Green} exit ${White}]$Green tpx $White Security $BYellow c[ÏÏÏ] \e[0m"
+                                echo -e "$White[${Green} exit ${White}] tpx  Security $BYellow c[ÏÏÏ] \e[0m"
                                 echo ""
                                 exit
                           exit
@@ -234,8 +234,7 @@ if [ "$QuienPompo" != "root" ]
 
 echo ""
 echo ""
-echo -e " EOF !"
-echo -e "${BYellow} c[ÏÏÏ] \e[0m"
+echo -e "$White[${Green} EOF ! ${White}] tpx  Security $BYellow c[ÏÏÏ] \e[0m"
 echo ""
 
 
