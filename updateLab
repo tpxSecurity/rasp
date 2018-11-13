@@ -158,7 +158,9 @@ if [ "$QuienPompo" != "root" ]
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
                           wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/bashrc -q -O /tmp/.bashrc; mv -f /tmp/.bashrc /home/pi/.bashrc
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
+                          rm -rf /tmp/.bashrc
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
+
 
                       else
                       echo -e "  ${BRed} [!] \e[3m No es necesario actualizar el archivo .bashrc \e[0m"
@@ -176,10 +178,12 @@ if [ "$QuienPompo" != "root" ]
                           sleep 2
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Copia creada  \e[0m  "
                           ls .updateLab_*
-                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo .Bashrc  \e[0m  "
+                          echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan} Descargando archivo UpdateLab  \e[0m  "
                           wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/updateLab -q -O /tmp/.updateLab; mv -f /tmp/.updateLab /home/pi/.updateLab
                           echo -e "  ${Cyan}[${BGreen}+${Cyan}]\e[0m $fecha ${Cyan} Archivo Actualizado  \e[0m  "
+                          rm -rf /tmp/.updateLab
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
+
 
                       else
                       echo -e "  ${BRed} [!] \e[3m No es necesario actualizar updateLab \e[0m"
