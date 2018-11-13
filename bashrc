@@ -125,6 +125,7 @@ fi
 # Funcion de carga, da tiempo al curl.
 # Apartir de aquí pa abajo son 
 # modificaciones de tpx
+# 13 de Noviembre 2018
 #########################################
 
 function cargandopath()
