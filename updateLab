@@ -125,7 +125,7 @@ if [ "$QuienPompo" != "root" ]
 
         echo ""
         echo -e "     ${Red} [${Cyan} 1 ${Red}]$White Actualizar Tools "
-        echo -e "     ${Red} [${Cyan} 2 ${Red}]$White Actualiar Bashrc. "
+        echo -e "     ${Red} [${Cyan} 2 ${Red}]$White Actualizar Bashrc. "
         echo -e "     ${Red} [${Cyan} 3 ${Red}]$White Actualizar UpdateLab "
         echo -e "     ${Red} [${Cyan} 4 ${Red}]$White Salir. "
         echo ""
