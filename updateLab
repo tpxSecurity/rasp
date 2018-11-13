@@ -133,10 +133,12 @@ if [ "$QuienPompo" != "root" ]
                           echo -e "  ${Cyan}[${BBlue}!${Cyan}]\e[0m $fecha ${Cyan}Descargando Herramientas  \e[0m  "
                           sleep 2
                           cd  /home/pi/Desktop/tools;
-                          wget https://lab.tpx.mx/rasp/tools.txt -O tool.sh -q
-                          source tools.sh
+                          wget https://lab.tpx.mx/rasp/tools.txt -O tool.sh -q;
+                          source tool.sh
+                          sleep 2
                           echo -e "  ${Cyan}[${BGreen}!${Cyan}]\e[0m $fecha ${Cyan}Herramientas Descargadas  \e[0m  "
-                          rm -rf tools.sh
+                          cd /home/pi/Desktop/tools;
+                          rm -rf tool.sh
                           ls -lt
                           sleep 3
 
@@ -221,9 +223,11 @@ if [ "$QuienPompo" != "root" ]
               echo -e "\e[0m"
       fi
 
-
+echo ""
+echo ""
 echo -e " EOF !"
 echo -e "${BYellow} c[ÏÏÏ] \e[0m"
+echo ""
 
 
 fi
