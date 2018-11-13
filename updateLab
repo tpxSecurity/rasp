@@ -4,7 +4,7 @@
 # Actualización del sistema Rasp
 # tpx Security
 #     https://lab.tpx.mx/rasp
-# 13 Nov 2018
+# Noviembre 13 - 02:15
 #################################
 
 
@@ -98,15 +98,30 @@ if [ "$QuienPompo" != "root" ]
         ntools=$(curl -a --silent $data | sed -n 's/tools: *//p')
         nbashrc=$(curl -a --silent $data | sed -n 's/Bashrc: *//p')
         nupdateLab=$(curl -a --silent $data | sed -n 's/updateLab: *//p')
+        nLogin=$(curl -a --silent $data | sed -n 's/Login: *//p')
 
 
+
+
+
+        if [ $nLogin == Si ]; then
+            wget https://raw.githubusercontent.com/tpxSecurity/rasp/master/login_tpx -q -O /tmp/login_tpx; mv -f /tmp/login_tpx /home/pi/.login_tpx;
+            rm -rf /tmp/login_tpx;
+            chown pi:pi /home/pi/.login_tpx;
+            echo -ne ' Login              \r'
+            sleep .3
+            echo -ne ' Login Actualizado  \r'
+            sleep .3
+        else
+        echo -e "  ${BCyan}[ No ] \e[3m hay update en el login \e[0m"
+        fi
         if [ $ntools -gt 0 ]; then
         echo -e "  $BRed [ $ntools]\e[0m Herramientas arriba "
         else
         echo -e "  ${BCyan}[ No ] \e[3m hay tools para descargar \e[0m"
         fi  
         echo -e "  $BRed[ $nbashrc ]\e[0m necesitas actualiza tu BashRC "
-        echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualiza tu UpdateLab "
+        echo -e "  $BRed[ $nupdateLab ]\e[0m necesitas actualizar tu UpdateLab "
 
         echo ""
         echo -e "     ${Red} [${Cyan} 1 ${Red}]$White Actualizar Tools "
@@ -164,6 +179,8 @@ if [ "$QuienPompo" != "root" ]
                           rm -rf /tmp/bashrc;
                           chown pi:pi /home/pi/.bashrc;
                           echo -e " $BYellow c[ÏÏÏ] \e[0m"
+                          lxterminal;
+                          exit 
 
 
                       else
@@ -193,6 +210,8 @@ if [ "$QuienPompo" != "root" ]
                       else
                       echo -e "  ${BRed} [!] \e[3m No es necesario actualizar updateLab \e[0m"
                       fi
+
+
 
                         
                      ;;
