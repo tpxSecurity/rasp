@@ -1,0 +1,101 @@
+BYellow='\e[1;33m'
+BCyan='\e[1;36m'
+BRed='\e[1;31m'
+Yellow='\e[0;33m'
+BGreen='\e[1;32m'
+Green='\e[0;32m'
+
+function Verficando()
+   {
+echo -ne '\n'
+echo -ne ' | \r'
+sleep .3
+echo -ne ' / \r'
+sleep .3
+echo -ne ' - \r'
+sleep .5
+echo -ne ' \ \r'
+sleep .3
+echo -ne ' | \r'
+sleep .3
+echo -ne ' / \r'
+sleep .2
+echo -ne ' - \r'
+sleep .3
+echo -ne ' \ \r'
+sleep .3
+echo -ne ' |  \r'
+sleep .4
+echo -ne ' - \r'
+echo -ne ' | \r'
+sleep .3
+echo -ne ' / \r'
+sleep .3
+echo -ne ' - \r'
+sleep .2
+echo -ne ' \ \r'
+sleep .3
+echo -ne ' | \r'
+sleep .3
+echo -ne ' / \r'
+sleep .2
+echo -ne ' - \r'
+sleep .3
+echo -ne ' \ \r'
+sleep .3
+echo -ne ' |  \r'
+sleep .2
+echo -ne ' - \r'
+sleep .3
+echo -ne '\n'
+
+   }
+
+Verficando
+
+
+
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+data="https://lab.tpx.mx/rasp/data.txt"
+nversion=$(curl -a --silent $data | sed -n 's/Version: *//p')
+nyear=$(curl -a --silent $data | sed -n 's/Year: *//p')
+nmensaje=$(curl -a --silent $data | sed -n 's/Mensaje: *//p')
+else
+nversion="No hay conexion a Internet"
+nyear="No hay conexion a Internet"
+nmensaje="Necesitas conectarte a Internet"
+fi
+
+echo  -e "
+                                           \e[0m${BYellow},:
+ \e[31m\033[33;5;7m    Bienvenido al Laboratorio    \e[0m       ${BYellow},' |\"
+ \e[31m\033[33;5;7m         tpx Security            \e[0m      ${BYellow}/   :
+ \e[31m\033[33;5;7m       soporte@tpx.mx            \e[0m   ${BYellow}- -'  /
+                                     ${BYellow}\/  :/
+                                     ${BYellow}/ : /_\ 
+                                   ${BYellow}_/   / 
+${BCyan} __________ ________  ___    ___ ${BYellow})\'-. / 
+${BCyan}|\___   ___\\\\\   __  \|\  \  /  /|${BYellow}./  :\ 
+${BCyan}\|___ \  \_\ \ \\ |\\  \\\\ \  \/  / |${BYellow}/.' ' 
+     ${BCyan}\ \  \ \ \   ____\\\ \    / /${BYellow}.' ' 
+      ${BCyan}\ \  \ \ \  \___|/     \/${BYellow}.'.
+       ${BCyan}\ \__\ \ \__\  /  /\   \ ${BYellow}, '
+       ${BCyan} \|__|  \|__| /__/ /\ __\ ${BYellow} + '
+                     ${BCyan}|__|/ \|__|${BYellow} '
+                          ${BYellow}\`.${BCyan} ___       ________  ________
+                     ${BYellow}.-\"-   ${BCyan}|\  \     |\   __  \|\   __  \\
+                    ${BYellow}(    \| ${BCyan}\ \  \ ${BYellow}'  ${BCyan}\ \  \|\  \ \  \|\ /_
+                  ${BYellow}. .-\'  \' ${BCyan}\ \  \    \ \   __  \ \   __  \\
+                   ${BYellow}( (.   )8: ${BCyan}\ \  \____\ \  \ \  \ \  \|\  \\
+             ${BYellow}.\'    / (_  )    ${BCyan}\ \_______\ \__\ \__\ \_______\\
+              ${BYellow}_. :(.   )8P  \`   ${BCyan}\|_______|\|__|\|__|\|_______|
+               ${BYellow}.  (  \`-\' (  \`.   .
+       ${BYellow}.  :  (   .a8a)
+      ${BYellow}/_\`( \"a \`a. )\"\'       ${BRed}[+] Versión:${Yellow}  $nversion
+    ${BYellow}(  (/  .  \' )==\'       ${BRed}[+] Año:${Yellow} $nyear 
+  ${BYellow}\'    _  \`    (8P\"Ya       ${BRed}[+] Info:${Yellow}  https://lab.tpx.mx/rasp/
+${BYellow}_(    (    )b  -\`.  ) +      ${BGreen}[!]${Green} $nmensaje 
+${BYellow}( 8)  ( _.aP\" _a   \( \   *
+"
+
